@@ -1,0 +1,24 @@
+[
+    {
+      "name": "Fluffy",
+      "age": 3,
+      "weight": 10,
+      "type": "Cat",
+      "likes": "Playing with toys"
+    },
+    {
+      "name": "Buddy",
+      "age": 5,
+      "weight": 18,
+      "type": "Dog",
+      "likes": "Going for walks"
+    },
+    {
+      "name": "Tweety",
+      "age": 2,
+      "weight": 0.5,
+      "type": "Bird",
+      "likes": "Singing melodies"
+    }
+  ]
+  

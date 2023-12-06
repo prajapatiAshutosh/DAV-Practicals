@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Display Pets Information</title>
+  <style>
+    /* Styles for displaying pets information */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #petsList {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .pet {
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px;
+      background-color: #f9f9f9;
+    }
+
+    .pet h2 {
+      margin-top: 0;
+    }
+
+    .pet p {
+      margin-bottom: 5px;
+    }
+
+    #fetchButton {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #fetchButton:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pets Information</h1>
+  <button id="fetchButton">Fetch Data</button>
+  <div id="petsList"></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#fetchButton').on('click', function() {
+        $.ajax({
+          url: 'pets.json',
+          dataType: 'json',
+          success: function(data) {
+            displayPets(data);
+          },
+          error: function(xhr, status, error) {
+            console.error(status, error);
+          }
+        });
+      });
+
+      function displayPets(pets) {
+        var petsList = $('#petsList');
+        pets.forEach(function(pet) {
+          var petDiv = $('<div class="pet"></div>');
+          var petInfo = '<h2>' + pet.name + '</h2>' +
+                        '<p>Type: ' + pet.type + '</p>' +
+                        '<p>Age: ' + pet.age + '</p>' +
+                        '<p>Weight: ' + pet.weight + ' pounds</p>' +
+                        '<p>Likes: ' + pet.likes + '</p>';
+          petDiv.html(petInfo);
+          petsList.append(petDiv);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

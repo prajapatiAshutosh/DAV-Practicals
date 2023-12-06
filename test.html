@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pets Information</title>
+    <style>
+        /* Your CSS styles here */
+        /* For example */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .pet {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+        }
+        /* Define other CSS classes for styling */
+    </style>
+</head>
+<body>
+    <h1>Pets Information</h1>
+
+    <div id="petsContainer"></div>
+
+    <script>
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+          if (this.readyState === 4 && this.status === 200) {
+              const petsData = JSON.parse(xhr.responseText);
+              displayPets(petsData);
+          }
+      };
+      xhr.open('GET', 'pets.json', true);
+      xhr.send();
+  
+      function displayPets(pets) {
+          const petsContainer = document.getElementById('petsContainer');
+  
+          pets.forEach(pet => {
+              const petDiv = document.createElement('div');
+              petDiv.classList.add('pet');
+  
+              const petInfo = `
+                  <h2>${pet.name}</h2>
+                  <p><strong>Species:</strong> ${pet.species}</p>
+                  <p><strong>Age:</strong> ${pet.age}</p>
+                  <p><strong>Color:</strong> ${pet.color}</p>
+              `;
+  
+              petDiv.innerHTML = petInfo;
+              petsContainer.appendChild(petDiv);
+          });
+      }
+  </script>
+  
+</body>
+</html>

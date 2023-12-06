@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pet Information Form</title>
+  <style>
+    /* Some basic styling for the form */
+   /* Styles for the form */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  width: 300px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: calc(100% - 12px);
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+  </style>
+</head>
+<body>
+  <h1>Pet Information Form</h1>
+  <form id="petForm">
+    <label for="petName">Pet's Name:</label>
+    <input type="text" id="petName" required><br>
+    
+    <label for="petAge">Age:</label>
+    <input type="number" id="petAge" required><br>
+    
+    <label for="petWeight">Weight (in pounds):</label>
+    <input type="number" id="petWeight" required><br>
+    
+    <label for="petType">Type:</label>
+    <select id="petType" required>
+      <option value="Dog">Dog</option>
+      <option value="Cat">Cat</option>
+      <option value="Bird">Bird</option>
+      <option value="Other">Other</option>
+    </select><br>
+    
+    <label for="petLikes">What it likes most:</label>
+    <input type="text" id="petLikes" required><br>
+    
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    document.getElementById('petForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get form values
+      var name = document.getElementById('petName').value;
+      var age = parseInt(document.getElementById('petAge').value);
+      var weight = parseFloat(document.getElementById('petWeight').value);
+      var type = document.getElementById('petType').value;
+      var likes = document.getElementById('petLikes').value;
+
+      // Create Pet object
+      var pet = {
+        name: name,
+        age: age,
+        weight: weight,
+        type: type,
+        likes: likes
+      };
+
+      // Log Pet object and equivalent JSON
+      console.log("Pet Object:", pet);
+      console.log("Equivalent JSON:", JSON.stringify(pet));
+    });
+  </script>
+</body>
+</html>
